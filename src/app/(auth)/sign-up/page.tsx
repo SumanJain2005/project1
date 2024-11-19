@@ -4,7 +4,7 @@ import { useForm} from "react-hook-form"
 import * as z from "zod"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import {useDebounceValue , useDebounceCallback } from "usehooks-ts"
+import { useDebounceCallback } from "usehooks-ts"
 import { useToast } from "@/hooks/use-toast"
 
 import { signUpSchema } from "@/schemas/signUpSchema"
@@ -13,13 +13,13 @@ import { ApiResponse } from "@/types/ApiResponse"
 import { Form, FormItem } from "@/components/ui/form"
 import { FormField } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { FormLabel , FormControl , FormDescription , FormMessage} from "@/components/ui/form"
+import { FormLabel , FormControl , FormMessage} from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation";
-import { set } from "mongoose"
 
-const page = () =>{
+
+const Page = () =>{
   const [username , setUsername] = useState('')
   const [usermessage , setUsernameMessage] = useState('')
   const [isCheckingUsername , setIsCheckingUsername] = useState(false)
@@ -49,7 +49,7 @@ const page = () =>{
         setUsernameMessage("");
       try {
         const response = await axios.get(`/api/check-Username-unique?username=${username}`)
-        let message = response.data.message;
+        const message = response.data.message;
         setUsernameMessage(message);
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>;
@@ -76,7 +76,7 @@ const page = () =>{
     } catch (error) {
         console.log("Error in user signup : " , error)
         const axiosError = error as AxiosError<ApiResponse>;
-      let errorMessage = axiosError.response?.data.message;
+      const errorMessage = axiosError.response?.data.message;
       toast({
         title : "Signup Failed",
         description : errorMessage,
@@ -175,4 +175,4 @@ const page = () =>{
     </div>
   )
 }
-export default page
+export default Page

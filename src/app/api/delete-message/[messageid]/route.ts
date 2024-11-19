@@ -3,10 +3,11 @@ import { AuthOptions } from "../../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/user";
 import {User} from "next-auth";
-import { NextRequest } from "next/server";
-import {Message} from "@/model/user";
+
 export async function DELETE(request: Request , {params}: {params : {messageid : string}}){
+    
     const messageId = params.messageid;
+    console.log(messageId);
     await dbConnect();
     const session = await getServerSession(AuthOptions);
     const _user : User  = session?.user as User;
@@ -33,13 +34,18 @@ export async function DELETE(request: Request , {params}: {params : {messageid :
             success : true,
             message : "Message deleted successfully"
         },{status : 200})
-    } catch (error) {
+
+    }
+             /* eslint-disable @typescript-eslint/no-explicit-any */
+    catch (error) { 
+        console.log(error,"Error deleting message");
         return Response.json({
             success : false,
-            message : "Error Deleting Message"
+            message : "Error Deleting Message" 
         },{
             status : 500
         })
     }
+             /* eslint-enable @typescript-eslint/no-explicit-any */
    
 }

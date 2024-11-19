@@ -6,7 +6,7 @@ import OpenAI from 'openai';
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
-export async function POST(req: Request) {
+export async function POST() {
     try {
         //const { messages } = await req.json();
         const prompt ="What’s something you’re really passionate about and why? ‘||’ If you could have dinner with any historical figure, who would it be and what would you ask them? ‘||’ What’s the most interesting place you’ve ever traveled to, and what made it special?"

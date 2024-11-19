@@ -14,6 +14,7 @@ export const AuthOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       async authorize(credentials: any): Promise<any> {
         await dbConnect();
         try {
@@ -44,6 +45,7 @@ export const AuthOptions: NextAuthOptions = {
       },
     }),
   ],
+  /* eslint-enable @typescript-eslint/no-explicit-any */
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

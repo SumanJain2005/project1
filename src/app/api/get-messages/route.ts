@@ -4,6 +4,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/user";
 import {User} from "next-auth";
 import mongoose from "mongoose";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export async function GET(request: Request){
     await dbConnect();
     const session = await getServerSession(AuthOptions)
@@ -41,3 +42,4 @@ export async function GET(request: Request){
         })
     }
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */
